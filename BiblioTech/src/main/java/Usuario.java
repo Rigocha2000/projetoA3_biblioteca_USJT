@@ -5,35 +5,38 @@ import java.sql.PreparedStatement;
 public class Usuario {
     
     private int id;
-    private String Nome;
-    private String Sexo;
-    private int Idade;
-    private String Login;
-    private String Senha;
-    private String Email;
-    private boolean FavRomance = false ;
-    private boolean FavFiccao = false ;
-    private boolean FavTecnico = false ;
+    private String nome;
+    private String sexo;
+    private int idade;
+    private String login;
+    private String senha;
+    private String email;
+    private boolean favRomance = false ;
+    private boolean favFiccao = false ;
+    private boolean favTecnico = false ;
     private boolean admin;
 
     public Usuario() {
     }
 
-    public Usuario(String Login) {
-        this.Login = Login;
+    public Usuario(String nome) {
+        this.nome = nome;
     }
 
-    public Usuario(String Nome, String Sexo, int Idade, String Login, String Senha, String Email, boolean admin) {
-        this.Nome = Nome;
-        this.Sexo = Sexo;
-        this.Idade = Idade;
-        this.Login = Login;
-        this.Senha = Senha;
-        this.Email = Email;
+    public Usuario(String nome, String sexo, int idade, String login, String senha, String email,
+            boolean favRomance, boolean favFiccao, boolean favTecnico, boolean admin) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.idade = idade;
+        this.login = login;
+        this.senha = senha;
+        this.email = email;
+        this.favRomance = favRomance;
+        this.favFiccao = favFiccao;
+        this.favTecnico = favTecnico;
         this.admin = admin;
     }
-    
-    
+
 
     public int getId() {
         return id;
@@ -44,75 +47,75 @@ public class Usuario {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getSexo() {
-        return Sexo;
+        return sexo;
     }
 
-    public void setSexo(String Sexo) {
-        this.Sexo = Sexo;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public int getIdade() {
-        return Idade;
+        return idade;
     }
 
-    public void setIdade(int Idade) {
-        this.Idade = Idade;
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
     public String getLogin() {
-        return Login;
+        return login;
     }
 
-    public void setLogin(String Login) {
-        this.Login = Login;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSenha() {
-        return Senha;
+        return senha;
     }
 
-    public void setSenha(String Senha) {
-        this.Senha = Senha;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public boolean isFavRomance() {
-        return FavRomance;
+        return favRomance;
     }
 
-    public void setFavRomance(boolean FavRomance) {
-        this.FavRomance = FavRomance;
+    public void setFavRomance(boolean favRomance) {
+        this.favRomance = favRomance;
     }
 
     public boolean isFavFiccao() {
-        return FavFiccao;
+        return favFiccao;
     }
 
-    public void setFavFiccao(boolean FavFiccao) {
-        this.FavFiccao = FavFiccao;
+    public void setFavFiccao(boolean favFiccao) {
+        this.favFiccao = favFiccao;
     }
 
     public boolean isFavTecnico() {
-        return FavTecnico;
+        return favTecnico;
     }
 
-    public void setFavTecnico(boolean FavTecnico) {
-        this.FavTecnico = FavTecnico;
+    public void setFavTecnico(boolean favTecnico) {
+        this.favTecnico = favTecnico;
     }
 
     public boolean isAdmin() {
@@ -123,35 +126,10 @@ public class Usuario {
         this.admin = admin;
     }
 
-
-
-    //@Override
-    // public String toString() {
-    //     return "Usuario{" + "id="+id+ ", nome="+nome+  ", login="+login+", senha="+senha+ ", email="+email+ ", idade="+idade+ ", sexo="+sexo+ ", favorito1="+fav1+ ", favorito2="+fav2+ ", admin="+admin+  "}";
-    // }
-    public boolean cadastrar () {
-        //definir comando SQL
-        String sql = "INSERT INTO Usuario (Login, Senha, Email) VALUES (?, ?, ?)";
-        
-        //abrir conexão como recurso do try
-        try (Connection c = ConnectionFactory.obtemConexao()){
-            //pre compilar o comando SQL
-            PreparedStatement ps = c.prepareStatement(sql);
-            //preencher com valores o statement SQL
-            ps.setString(1, Login);
-            ps.setString(2, Senha);
-            ps.setString(3, Email);
-            //executa o comando
-            ps.execute();
-            return true;
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-        
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", login=" + login + ", admin=" + admin
+                + "]";
     }
-    
-    
     
 }

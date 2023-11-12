@@ -1,13 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-// import java.sql.ResultSet;
-// import java.sql.Statement;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -40,8 +30,15 @@ public class TelaCadastro extends javax.swing.JFrame {
         adminCheckBox = new javax.swing.JCheckBox();
         cadastrarButton = new javax.swing.JButton();
         sairButton = new javax.swing.JButton();
+        nomeTextField = new javax.swing.JTextField();
+        sexoTextField = new javax.swing.JTextField();
+        idadeTextField = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        favComboBox1 = new javax.swing.JComboBox<>();
+        favComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CADASTRO DE USUARIO");
 
         loginTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
@@ -70,38 +67,88 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
+        nomeTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
+
+        sexoTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Sexo"));
+
+        idadeTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Idade"));
+
+        jTextField1.setBackground(null);
+        jTextField1.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        jTextField1.setText("Favoritos:");
+        jTextField1.setBorder(null);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        favComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ficcao", "Romance", "Tecnico" }));
+        favComboBox1.setBorder(null);
+        favComboBox1.setOpaque(true);
+
+        favComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ficcao", "Romance", "Tecnico" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(sairButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(adminCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                         .addComponent(senhaTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                         .addComponent(emailTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                        .addComponent(loginTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                        .addComponent(cadastrarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(loginTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(favComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sexoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(favComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(sairButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(138, Short.MAX_VALUE)
+                .addComponent(cadastrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(senhaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(senhaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idadeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sexoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(favComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(favComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(adminCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(cadastrarButton)
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addComponent(sairButton)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         pack();
@@ -121,33 +168,76 @@ public class TelaCadastro extends javax.swing.JFrame {
         var login = loginTextField.getText();
         var senha = senhaTextField.getText();
         var email = emailTextField.getText();
-        
-        //definir comando SQL
-        String sql = "INSERT INTO Usuario (login, Senha, Email, Admin) VALUES (?, ?, ?, ?)";
-        
-        //abrir conexão como recurso do try
-        try (Connection c = ConnectionFactory.obtemConexao()){
-            //pre compilar o comando SQL
-            PreparedStatement ps = c.prepareStatement(sql);
-            //preencher com valores o statement SQL
-            ps.setString(1, login);
-            ps.setString(2, senha);
-            ps.setString(3, email);
-            ps.setBoolean(4, isAdmin);
-            //executa o comando
-            ps.execute();
-            this.dispose();
-            JOptionPane.showMessageDialog(this, "Usuario criado com sucesso!");
-            new TelaAdmin().setVisible(true);
+        var nome = nomeTextField.getText();
+        var idadeString = idadeTextField.getText();
+        var sexo = sexoTextField.getText();
+        var fav1 = favComboBox1.getSelectedItem();
+        var fav2 = favComboBox2.getSelectedItem();
+
+        if(login == null || login.length() == 0 || senha == null || senha.length() == 0 || email == null || email.length() == 0 || nome == null || nome.length() == 0 || idadeString == null || idadeString.length() == 0 || sexo == null || sexo.length() == 0 || fav1 == null || fav2 == null || fav1 == fav2) {
+            JOptionPane.showMessageDialog(null, "Por favor insira as informações corretamente... preencha todos os campos!");
+        }
+        else {
+
+            try {
+                int idade = Integer.parseInt(idadeString);
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Por favor insira a idade corretamente... somente números inteiros!");
+                idadeTextField.setText("");
+                e.printStackTrace();
+            }
+
+            try {
+                var user = new Usuario(login);
+                var userDAO = new UsuarioDAO();
+
+                int idade = Integer.parseInt(idadeString);
+                
+
+                if(userDAO.existeUsuario(user)){
+                    JOptionPane.showMessageDialog(null, "Usuario já existente!");
+                }
+                else {
+
+                    user.setLogin(login);
+                    user.setSenha(senha);
+                    user.setEmail(email);
+                    user.setNome(nome);
+                    user.setIdade(idade);
+                    user.setSexo(sexo);
+                    user.setAdmin(isAdmin);
+
+                    try {
+                        userDAO.cadastrar(user);
+                        loginTextField.setText("");
+                        senhaTextField.setText("");
+                        emailTextField.setText("");
+                        nomeTextField.setText("");
+                        idadeTextField.setText("");
+                        sexoTextField.setText("");
+                        favComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ficcao", "Romance", "Tecnico" }));
+                        favComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ficcao", "Romance", "Tecnico"  }));
+                        JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro ao cadastrar o usuário...");
+                e.printStackTrace();
+            }
 
         }
-        catch (Exception e){
-            e.printStackTrace();
-           
-        }
-
-
+    
     }//GEN-LAST:event_cadastrarButtonActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,7 +250,11 @@ public class TelaCadastro extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Flatlaf Light".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+                else if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -188,8 +282,14 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JCheckBox adminCheckBox;
     private javax.swing.JButton cadastrarButton;
     private javax.swing.JTextField emailTextField;
+    private javax.swing.JComboBox<String> favComboBox1;
+    private javax.swing.JComboBox<String> favComboBox2;
+    private javax.swing.JTextField idadeTextField;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField loginTextField;
+    private javax.swing.JTextField nomeTextField;
     private javax.swing.JButton sairButton;
     private javax.swing.JTextField senhaTextField;
+    private javax.swing.JTextField sexoTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,7 +35,7 @@ public class TelaLogin extends javax.swing.JFrame {
         loginButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Bibliotecos - Login");
+        setTitle("BiblioTech - Login");
 
         loginTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
@@ -99,22 +99,17 @@ public class TelaLogin extends javax.swing.JFrame {
         var senha = new String(senhaPasswordField.getPassword());
         
         //definir comando SQL
-        var sql = "select * from Usuario where login='"+login+"' and senha='"+senha+"'";
-        
-        //abrir conexão como recurso do try
-        try (Connection c = ConnectionFactory.obtemConexao()){
+        var sql = "select * from tb_usuario where login = ? and senha = ?";
 
-            Statement statement = c.createStatement();
-            ResultSet auth = statement.executeQuery(sql);
-            //pre compilar o comando SQL
-            //PreparedStatement ps = c.prepareStatement(sql);
-            //preencher com valores o statement SQL
-            //ps.setString(1, login);
-            //ps.setString(2, senha);
-            //executa o comando
-            //var auth = ps.executeQuery(sql);
-            if(auth.next()){
-                if(auth.getInt("Admin") == 1){
+        try (Connection conn = ConnectionFactory.obtemConexao();
+             PreparedStatement ps = conn.prepareStatement(sql)){
+
+            ps.setString(1, login);
+            ps.setString(2, senha);
+
+            try(ResultSet auth = ps.executeQuery()) {
+                if(auth.next()){
+                if(auth.getInt("admin") == 1){
                     this.dispose();
                     JOptionPane.showMessageDialog(null, "Bem vindo administrador!");
                     new TelaAdmin().setVisible(true);
@@ -126,15 +121,16 @@ public class TelaLogin extends javax.swing.JFrame {
                 
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario ou senha incorretos!");
-                loginTextField.setText("");
                 senhaPasswordField.setText("");
             }
+            }
+
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-    } 
+    }
 
     /**
      * @param args the command line arguments

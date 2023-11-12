@@ -1,30 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
-/**
- *
- * @author Guilherme
- */
 public class Livro {
 
     private int id;
-    private String Genero;
-    private String Autor;
-    private String Titulo;
-    private double NotaMedia;
-    private int FK_IdUser;
+    private String genero;
+    private String autor;
+    private String titulo;
+    private double notaMedia;
+    private int fk_IdUser;
 
-    public Livro(String Genero, String Autor, String Titulo, double NotaMedia, int FK_IdUser) {
-        this.Genero = Genero;
-        this.Autor = Autor;
-        this.Titulo = Titulo;
-        this.NotaMedia = NotaMedia;
-        this.FK_IdUser = FK_IdUser;
+    public Livro(String titulo, String autor){
+        this.titulo = titulo;
+        this.autor = autor;
+    }
+
+    public Livro(String genero, String autor, String titulo, double notaMedia, int fk_IdUser) {
+        this.genero = genero;
+        this.autor = autor;
+        this.titulo = titulo;
+        this.notaMedia = notaMedia;
+        this.fk_IdUser = fk_IdUser;
     }
     
 
@@ -37,69 +30,53 @@ public class Livro {
     }
 
     public String getGenero() {
-        return Genero;
+        return genero;
     }
 
-    public void setGenero(String Genero) {
-        this.Genero = Genero;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public String getAutor() {
-        return Autor;
+        return autor;
     }
 
-    public void setAutor(String Autor) {
-        this.Autor = Autor;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public String getTitulo() {
-        return Titulo;
+        return titulo;
     }
 
-    public void setTitulo(String Titulo) {
-        this.Titulo = Titulo;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public double getNotaMedia() {
-        return NotaMedia;
+        return notaMedia;
     }
 
-    public void setNotaMedia(double NotaMedia) {
-        this.NotaMedia = NotaMedia;
+    public void setNotaMedia(double notaMedia) {
+        this.notaMedia = notaMedia;
     }
 
-    public int getFK_IdUser() {
-        return FK_IdUser;
+    public int getFk_IdUser() {
+        return fk_IdUser;
     }
 
-    public void setFK_IdUser(int FK_IdUser) {
-        this.FK_IdUser = FK_IdUser;
+    public void setFk_IdUser(int fk_IdUser) {
+        this.fk_IdUser = fk_IdUser;
     }
 
 
-    public boolean cadastrar () {
-        //definir comando SQL
-        String sql = "INSERT INTO Livro (Genero, Autor, Titulo, NotaMedia, FK_IdUser) VALUES (?, ?, ?, ?, ?)";
-        
-        //abrir conexão como recurso do try
-        try (Connection c = ConnectionFactory.obtemConexao()){
-            //pre compilar o comando SQL
-            PreparedStatement ps = c.prepareStatement(sql);
-            //preencher com valores o statement SQL
-            ps.setString(1, Genero);
-            ps.setString(2, Autor);
-            ps.setString(3, Titulo);
-            ps.setDouble(4, NotaMedia);
-            ps.setInt(5, FK_IdUser);
-            //executa o comando
-            ps.execute();
-            return true;
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-        
+
+    @Override
+    public String toString() {
+        return titulo +", "+ autor;
     }
+
+
+    
 
 }
