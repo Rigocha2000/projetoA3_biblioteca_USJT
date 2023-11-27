@@ -7,6 +7,10 @@ public class Livro {
     private double notaMedia;
     private int fk_IdUser;
 
+    public Livro(){
+        
+    }
+
     public Livro(String titulo, String autor){
         this.titulo = titulo;
         this.autor = autor;

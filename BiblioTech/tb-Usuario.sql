@@ -9,9 +9,8 @@ idade int,
 login varchar (100),
 senha varchar (100),
 email varchar(100),
-favRomance boolean,
-favFiccao boolean,
-favTecnico boolean,
+fav1 varchar (8),
+fav2 varchar (8),
 constraint Usuario unique (login),
 admin boolean
 );

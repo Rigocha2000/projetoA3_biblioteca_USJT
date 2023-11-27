@@ -1,7 +1,3 @@
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
 public class Usuario {
     
     private int id;
@@ -11,9 +7,8 @@ public class Usuario {
     private String login;
     private String senha;
     private String email;
-    private boolean favRomance = false ;
-    private boolean favFiccao = false ;
-    private boolean favTecnico = false ;
+    private String fav1;
+    private String fav2;
     private boolean admin;
 
     public Usuario() {
@@ -23,17 +18,20 @@ public class Usuario {
         this.nome = nome;
     }
 
+    public Usuario(int id) {
+        this.id = id;
+    }
+
     public Usuario(String nome, String sexo, int idade, String login, String senha, String email,
-            boolean favRomance, boolean favFiccao, boolean favTecnico, boolean admin) {
+            String fav1, String fav2, boolean admin) {
         this.nome = nome;
         this.sexo = sexo;
         this.idade = idade;
         this.login = login;
         this.senha = senha;
         this.email = email;
-        this.favRomance = favRomance;
-        this.favFiccao = favFiccao;
-        this.favTecnico = favTecnico;
+        this.fav1 = fav1;
+        this.fav2 = fav2;
         this.admin = admin;
     }
 
@@ -94,28 +92,20 @@ public class Usuario {
         this.email = email;
     }
 
-    public boolean isFavRomance() {
-        return favRomance;
+    public String getFav1() {
+        return fav1;
     }
 
-    public void setFavRomance(boolean favRomance) {
-        this.favRomance = favRomance;
+    public void setFav1(String fav1) {
+        this.fav1 = fav1;
     }
 
-    public boolean isFavFiccao() {
-        return favFiccao;
+    public String getFav2() {
+        return fav2;
     }
 
-    public void setFavFiccao(boolean favFiccao) {
-        this.favFiccao = favFiccao;
-    }
-
-    public boolean isFavTecnico() {
-        return favTecnico;
-    }
-
-    public void setFavTecnico(boolean favTecnico) {
-        this.favTecnico = favTecnico;
+    public void setFav2(String fav2) {
+        this.fav2 = fav2;
     }
 
     public boolean isAdmin() {

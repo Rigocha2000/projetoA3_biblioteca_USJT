@@ -2,10 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -98,36 +94,18 @@ public class TelaLogin extends javax.swing.JFrame {
         var login = loginTextField.getText();
         var senha = new String(senhaPasswordField.getPassword());
         
-        //definir comando SQL
-        var sql = "select * from tb_usuario where login = ? and senha = ?";
+        UsuarioDAO userDAO = new UsuarioDAO();
 
-        try (Connection conn = ConnectionFactory.obtemConexao();
-             PreparedStatement ps = conn.prepareStatement(sql)){
+        String result = userDAO.login(login, senha);
 
-            ps.setString(1, login);
-            ps.setString(2, senha);
-
-            try(ResultSet auth = ps.executeQuery()) {
-                if(auth.next()){
-                if(auth.getInt("admin") == 1){
-                    this.dispose();
-                    JOptionPane.showMessageDialog(null, "Bem vindo administrador!");
-                    new TelaAdmin().setVisible(true);
-                } else {
-                    this.dispose();
-                    JOptionPane.showMessageDialog(null, "Bem vindo!");
-                    new TelaUsuario().setVisible(true);
-                }
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario ou senha incorretos!");
+        switch (result) {
+            case "incorreto":
                 senhaPasswordField.setText("");
-            }
-            }
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
+                break;
+        
+            default:
+            this.dispose();
+                break;
         }
 
     }

@@ -60,7 +60,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        sairButton.setText("SAIR");
+        sairButton.setText("VOLTAR");
         sairButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairButtonActionPerformed(evt);
@@ -73,21 +73,15 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         idadeTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Idade"));
 
-        jTextField1.setBackground(null);
         jTextField1.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         jTextField1.setText("Favoritos:");
         jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
-        favComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ficcao", "Romance", "Tecnico" }));
+        favComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Romance", "Tecnico", "Ficcao" }));
         favComboBox1.setBorder(null);
         favComboBox1.setOpaque(true);
 
-        favComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ficcao", "Romance", "Tecnico" }));
+        favComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Romance", "Tecnico", "Ficcao" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,8 +165,8 @@ public class TelaCadastro extends javax.swing.JFrame {
         var nome = nomeTextField.getText();
         var idadeString = idadeTextField.getText();
         var sexo = sexoTextField.getText();
-        var fav1 = favComboBox1.getSelectedItem();
-        var fav2 = favComboBox2.getSelectedItem();
+        var fav1 = (String)favComboBox1.getSelectedItem();
+        var fav2 = (String)favComboBox2.getSelectedItem();
 
         if(login == null || login.length() == 0 || senha == null || senha.length() == 0 || email == null || email.length() == 0 || nome == null || nome.length() == 0 || idadeString == null || idadeString.length() == 0 || sexo == null || sexo.length() == 0 || fav1 == null || fav2 == null || fav1 == fav2) {
             JOptionPane.showMessageDialog(null, "Por favor insira as informações corretamente... preencha todos os campos!");
@@ -206,6 +200,8 @@ public class TelaCadastro extends javax.swing.JFrame {
                     user.setNome(nome);
                     user.setIdade(idade);
                     user.setSexo(sexo);
+                    user.setFav1(fav1);
+                    user.setFav2(fav2);
                     user.setAdmin(isAdmin);
 
                     try {
@@ -234,10 +230,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         }
     
     }//GEN-LAST:event_cadastrarButtonActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

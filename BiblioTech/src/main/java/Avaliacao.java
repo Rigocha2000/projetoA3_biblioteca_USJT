@@ -8,6 +8,15 @@ public class Avaliacao {
     private int fk_IdUser;
     private int fk_IdLivro;
 
+    public Avaliacao() {
+    }
+
+    public Avaliacao(double nota, int fk_IdLivro, int fk_IdUser){
+        this.nota = nota;
+        this.fk_IdUser = fk_IdUser;
+        this.fk_IdLivro = fk_IdLivro;
+    }
+
     public int getId() {
         return id;
     }
